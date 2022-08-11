@@ -19,7 +19,10 @@ const Page = ({
   if (typeof title === 'string' || title instanceof String) {
     titleElement = (
       <View style={styles.padding}>
-        <Text allowFontScaling={allowFontScaling} style={[styles.title, isLight ? styles.titleLight : {}, titleStyles]}>
+        <Text
+          allowFontScaling={allowFontScaling}
+          style={[styles.title, isLight ? styles.titleLight : {}, titleStyles]}
+        >
           {title}
         </Text>
       </View>
@@ -30,7 +33,14 @@ const Page = ({
   if (typeof subtitle === 'string' || subtitle instanceof String) {
     subtitleElement = (
       <View style={styles.padding}>
-        <Text allowFontScaling={allowFontScaling} style={[styles.subtitle, isLight ? styles.subtitleLight : {}, subTitleStyles]}>
+        <Text
+          allowFontScaling={allowFontScaling}
+          style={[
+            styles.subtitle,
+            isLight ? styles.subtitleLight : {},
+            subTitleStyles,
+          ]}
+        >
           {subtitle}
         </Text>
       </View>
@@ -39,7 +49,11 @@ const Page = ({
 
   return (
     <View style={[styles.container, containerStyles, { width, height }]}>
-      <View style={[styles.imageContainer, imageContainerStyles]}>{image}</View>
+      {image && (
+        <View style={[styles.imageContainer, imageContainerStyles]}>
+          {image}
+        </View>
+      )}
       {titleElement}
       {subtitleElement}
     </View>
@@ -48,7 +62,7 @@ const Page = ({
 
 Page.propTypes = {
   isLight: PropTypes.bool.isRequired,
-  image: PropTypes.element.isRequired,
+  image: PropTypes.element,
   containerStyles: PropTypes.shape({
     style: PropTypes.any,
   }),
